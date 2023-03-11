@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from .forms import UserChangeFormm, UserCreationForm
+from .forms import UserChangeForm, UserCreationForm
 from .models import User
+
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['email']
     add_form = UserCreationForm
-    form = UserChangeFormm
+    form = UserChangeForm
     model = User
     list_display = [
         'pkid',
@@ -37,7 +38,7 @@ class UserAdmin(BaseUserAdmin):
                 'fields': (
                     'email',
                     'password',
-                    
+
                 )
             },
         ),
@@ -73,3 +74,18 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
     )
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("email", "password1", "password2", "is_staff", "is_active"),
+            },
+        ),
+    )
+    search_fields = [
+        "email", "username", "fist_name", "last_name",
+    ]
+
+
+admin.site.register(User, UserAdmin)
