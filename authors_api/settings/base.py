@@ -33,6 +33,7 @@ THIRD_PARTY_APPS = [
     "phonenumber_field",
     "drf_yasg",
     "corsheaders",
+    'djcelery_email',
 ]
 
 LOCAL_APPS = [
@@ -151,23 +152,35 @@ CORS_URLS_REGEX = r"^/api/.*$"
 
 AUTH_USER_MODEL = "users.User"
 
+# CELERY_BROKER_URL = env("CELERY_BROKER")
+# CELERY_RESULT_BACKEND = env("CELERY_BACKEND")
+# CELERY_TIMEZONE = "Africa/Kigali"
+# CELERY_ACCEPT_CONTENT = ["json"]
+# CELERY_TASK_SERIALIZER = "json"
+# CELERY_RESULTS_SERIALIZER = "json"
+
+REST_FRAMEWORK = {
+    "EXCEPTION_HANDLER": "core_apps.common.exceptions.common_exceptions_handler",
+    "NON_FIELD_ERRORS_KEY": "error",
+}
+
 LOGGING = {
-   "version": 1,
-   "disable_existing_loggers": False,
-   "formatters": {
-       "verbose": {
-           "format": "%(levelname)s %(name)-12s %(asctime)s %(module)s " "%(process)d %(thread)d %(message)s"
-       }
-   },
-   "handlers": {
-       "console": {
-           "level": "DEBUG",
-           "class": "logging.StreamHandler",
-           "formatter": "verbose",
-       }
-   },
-   "root": {
-       "level": "INFO",
-       "handlers": ["console"],
-   }
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(name)-12s %(asctime)s %(module)s " "%(process)d %(thread)d %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        }
+    },
+    "root": {
+        "level": "INFO",
+        "handlers": ["console"],
+    }
 }
