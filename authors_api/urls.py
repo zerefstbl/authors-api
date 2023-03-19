@@ -14,7 +14,7 @@ schema_view = get_schema_view(
         license=openapi.License(name="MIT License")
     ),
     public=True,
-    permission_classes=[permissions.AllowAny,],
+    permission_classes=[permissions.AllowAny, ],
 )
 
 urlpatterns = [
@@ -23,6 +23,8 @@ urlpatterns = [
         name="schema-redoc",
     ),
     path(settings.ADMIN_URL, admin.site.urls),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls.jwt')),
 ]
 
 admin.site.site_header = "Authors Haven API Admin"

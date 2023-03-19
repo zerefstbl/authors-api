@@ -53,7 +53,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CreateUserSerializer(UserCreateSerializer):
-    class Meta(UserCreateSerializer.meta):
+    class Meta(UserCreateSerializer.Meta):
         model = User
         fields = [
             'id',
