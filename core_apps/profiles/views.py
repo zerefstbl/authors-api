@@ -49,27 +49,3 @@ class ProfileViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class UpdateProfileAPIView(generics.UpdateAPIView):
-    serializer_class = UpdateProfileSerializer
-    permission_classes = [permissions.IsAuthenticated, ]
-    queryset = Profile.objects.select_related('user')
-    renderer_classes = [ProfileJSONRenderer, ]
-
-    def patch(self, request, username):
-        try:
-            self.queryset.get(user__username=username)
-        except Profile.DoesNotExist:
-            raise NotFound('A profile with this username does not exist')
-
-        user_name = request.user.username
-        if user_name != username:
-            raise NotYourProfile
-
-        data = request.data
-        serializer = UpdateProfileSerializer(instance=request.user.profile, data=data, partial=True)
-
-        if serializer.is_valid():
-            serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
