@@ -102,7 +102,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
             formatted_response = {
                 'status_code': status.HTTP_200_OK,
-                'detail': f'Now you dont follow {specific_user.user.username}',
+                'detail': f'Now, you dont follow {specific_user.user.username}',
             }
             return Response(formatted_response, status=status.HTTP_200_OK)
 
