@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Novo seguidor em seu perfil</title>
+  </head>
+  <body>
+    <p>Olá {{ user_followed.first_name }},</p>
+
+    <p>
+      Você tem um novo seguidor em seu perfil. É ótimo ver que outras pessoas
+      estão interessadas em seu conteúdo!
+    </p>
+
+    <p>Aqui estão as informações do perfil do seu novo seguidor:</p>
+    <ul>
+      <li><strong>Nome:</strong> {{ user_following.first_name }}</li>
+      <li><strong>E-mail:</strong> {{ user_following.email }}</li>
+      <li><strong>Data de registro:</strong> {{ date }}</li>
+    </ul>
+
+    <p>
+      Se você quiser verificar o perfil do seu novo seguidor, faça login em
+      nosso site em e visite a seção "Seguidores" em seu perfil.
+    </p>
+
+    <p>Obrigado por usar nosso site!</p>
+
+    <p>Atenciosamente,<br />A equipe do Api do DUDU</p>
+  </body>
+</html>

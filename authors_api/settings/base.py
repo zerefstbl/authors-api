@@ -10,6 +10,8 @@ environ.Env.read_env('.envs/.local/.email')
 
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 APPS_DIR = ROOT_DIR / "core_apps"
 
 # Quick-start development settings - unsuitable for production
@@ -67,7 +69,7 @@ ROOT_URLCONF = 'authors_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(APPS_DIR / 'templates')],
+        'DIRS': [os.path.join(ROOT_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

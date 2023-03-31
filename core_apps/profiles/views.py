@@ -12,6 +12,8 @@ from .pagination import ProfilePagination
 from .renderers import ProfileJSONRenderer, ProfilesJSONRenderer
 from .serializers import FollowingSerializer, ProfileSerializer, UpdateProfileSerializer
 
+from utils.email_sender import send_email_on_follow_account
+
 User = get_user_model()
 
 
@@ -112,5 +114,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
             'status_code': status.HTTP_200_OK,
             'detail': f'You now follow {specific_user.user.username}',
         }
+
+        send_email_on_follow_account(specific_user.user, request.user)
 
         return Response(formatted_response, status=status.HTTP_200_OK)
