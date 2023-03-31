@@ -8,6 +8,8 @@ from authors_api.settings.base import AUTH_USER_MODEL
 
 from core_apps.profiles.models import Profile
 
+from utils.email_sender import send_email_on_create_account
+
 logger = logging.getLogger(__name__)
 
 
@@ -15,6 +17,7 @@ logger = logging.getLogger(__name__)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+        send_email_on_create_account(instance)
 
 
 @receiver(post_save, sender=AUTH_USER_MODEL)

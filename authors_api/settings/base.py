@@ -1,9 +1,12 @@
 from datetime import timedelta
 from pathlib import Path
 
+import os
 import environ
 
 env = environ.Env()
+
+environ.Env.read_env('.envs/.local/.email')
 
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -217,3 +220,10 @@ LOGGING = {
         "handlers": ["console"],
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ['EMAIL_ADRESS']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
