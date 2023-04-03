@@ -91,7 +91,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     def follow_and_unfollow(self, request, **kwargs):
         try:
             specific_user = self.queryset.get(user__username=self.kwargs.get('pk'))
-        except User.DoesNotExist:
+        except Profile.DoesNotExist:
             raise NotFound('User with this name does not exist')
 
         current_user_profile = request.user.profile

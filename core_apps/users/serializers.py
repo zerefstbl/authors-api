@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
     gender = serializers.CharField(source='profile.gender')
     phone_number = PhoneNumberField(source='profile.phone_number')
     profile_photo = serializers.ReadOnlyField(source='profile.profile_photo')
-    contry = CountryField(source='profile.country')
+    country = CountryField(source='profile.country')
     city = serializers.CharField(source='profile.city')
     first_name = serializers.SerializerMethodField()
     last_name = serializers.SerializerMethodField()
