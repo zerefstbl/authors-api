@@ -15,7 +15,6 @@ class ArticleReadTimeEngine:
 
     def get_title(self):
         return self.article.title
-    
+
     def get_tags(self):
         tag_words = []
-        [tag_words.extend]
